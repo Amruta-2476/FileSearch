@@ -1,42 +1,345 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bg-color: #f8fafc;
+  --header-bg: #1e293b;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent-primary: #4f46e5;
+  --accent-primary-hover: #4338ca;
+  --accent-secondary: #10b981;
+  --accent-warning: #f59e0b;
+  --accent-info: #3b82f6;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Header --- */
+.app-header {
+  background-color: var(--header-bg);
+  color: white;
+  padding: 2rem 2rem;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* --- Main Content --- */
+.app-main {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  flex-grow: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* --- Control Panel --- */
+.controls-container {
+  background: var(--card-bg);
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.card {
-  padding: 2em;
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.read-the-docs {
-  color: #888;
+.search-wrapper {
+  position: relative;
+  flex-grow: 1;
+  min-width: 300px;
+}
+.search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.search-icon, .mic-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+.search-icon { left: 0.75rem; }
+.mic-icon { right: 0.75rem; cursor: pointer; }
+
+select {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.sort-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sort-wrapper select {
+  font-weight: 600;
+}
+
+.clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.clear-btn:hover {
+  background-color: #f8fafc;
+  color: var(--accent-primary);
+}
+
+.filters {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+.filter-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.filter-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+.pill {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pill:hover {
+  border-color: var(--accent-primary);
+}
+.pill.active {
+  background-color: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+.remark-filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.results-count {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.results-count strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* --- Table --- */
+.table-container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+  max-height: calc(100vh - 400px); /* Adjust based on your header/footer height */
+  min-height: 200px;
+}
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  table-layout: fixed; /* <-- ADD THIS LINE */
+}
+.file-table th, .file-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;         /* <-- ADD THIS for safety */
+  text-overflow: ellipsis;  /* <-- ADD THIS for safety */
+}
+.file-table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.file-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+.file-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.cell-file-no {
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-family: monospace;
+}
+.cell-file-name {
+  font-weight: 500;
+  white-space: normal;
+  word-break: break-word; /* <-- ADDED THIS to wrap long text */
+}
+.cell-remark {
+  white-space: normal;
+  color: var(--text-secondary);
+  min-width: 150px;
+}
+.cell-muted {
+  color: var(--text-muted);
+}
+.sub-row {
+  background-color: #efefef;
+}
+.sub-row td {
+  color: #878787;
+  font-size: 0.85rem;
+}
+.sub-row-indicator {
+  color: var(--text-muted);
+  margin-right: 0.7rem;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.status-badge.current { background-color: rgba(59, 130, 246, 0.1); color: #2563eb; }
+.status-badge.record { background-color: rgba(245, 158, 11, 0.1); color: #d97706; }
+.status-badge.completed { background-color: rgba(16, 185, 129, 0.1); color: #059669; }
+
+/* --- Feedback States --- */
+.feedback-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
+.feedback-state svg {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+.feedback-state p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.feedback-state.error {
+  color: #dc2626;
+}
+.feedback-state.error svg, .feedback-state.error p {
+  color: #dc2626;
+}
+.feedback-state pre {
+  margin-top: 1rem;
+  background: #fee2e2;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-align: left;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  animation: spin 1s linear infinite;
+  color: var(--accent-primary);
+}
+
+/* --- Footer --- */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  background: var(--bg-color);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .app-main { padding: 1rem; }
+  .controls-row { flex-direction: column; align-items: stretch; }
+  .results-count { margin-left: 0; margin-top: 0.5rem; text-align: right; }
+  .table-container { max-height: calc(100vh - 500px); }
 }
