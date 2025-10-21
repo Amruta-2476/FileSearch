@@ -8,11 +8,11 @@ It combines a modern **React frontend** with a **Node.js + MySQL backend**, offe
 * **🔍 Smart Search:** Find files/subfiles by number, name, or keywords.
 * **🎙️ Voice Search:** Hands-free searching.
 * **⚙️ Advanced Filters:** Filter by status — Current, Record, Completed, Cancelled, etc.
-* **🔒 Secure Authentication:** Only admins can modify data (**JWT-based login with password hashing (bcrypt)**).
+* **🔒 Secure Authentication:** Only admins can modify data (**JWT with password hashing (bcrypt)**).
 * **🧑‍💼 Admin Panel:**<br>
        * Add / Edit / Delete file records<br>
        * 📥 CSV Import: Bulk upload files — auto-groups subfiles, skips duplicates, and updates valid records only.<br>
-       * 📤 CSV Export: Download all data as a clean, structured CSV preserving parent–subfile hierarchy.
+       * 📤 CSV Export: Download structured CSVs preserving parent–subfile hierarchy.
 * **📱 Responsive UI:** Works smoothly on any device.
 
 ## 🖥️ Usage
@@ -51,7 +51,7 @@ It combines a modern **React frontend** with a **Node.js + MySQL backend**, offe
     ```sql
     CREATE TABLE files (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        file_no VARCHAR(255) NOT NULL UNIQUE,
+        file_no VARCHAR(255) NOT NULL,
         file_name VARCHAR(255),
         current VARCHAR(255),
         record VARCHAR(255),
@@ -64,17 +64,16 @@ It combines a modern **React frontend** with a **Node.js + MySQL backend**, offe
     ```
 
 3.  **Create `users` Table (for Admin):**
-    Create the `users` table for administrator authentication.
     ```sql
     CREATE TABLE users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
-    );
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL 
+   );
     ```
 
 4.  **Insert Admin User:**
-    Insert an admin user. **Remember to change `admin_password` to a secure password.** 
+    **Remember to change `admin_password` to a secure password.** 
     ```sql
     INSERT INTO users (username, password) VALUES ('admin', 'admin_password');
     ```

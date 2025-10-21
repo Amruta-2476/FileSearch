@@ -4,7 +4,7 @@
   --bg-color: #f7fafc;     
   --text-dark: #1a202c;     
   --text-light: #718096;   
-  --border-color: #e2e8f0;  
+  --border-color: #cacdd0;  
   --white: #ffffff;        
   --red: #e53e3e;            
   --green: #38a169;          
@@ -49,8 +49,8 @@ body, html, #root {
 }
 
 .header-btn {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--white);
+  background-color: var(--accent-color);
+  color: var(--text-dark);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -59,11 +59,11 @@ body, html, #root {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  transition: background-color 0.2s;
+  /* transition: background-color 0.2s; */
 }
 
 .header-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #30807c;
 }
 
 /* --- Hero Section --- */
@@ -100,16 +100,20 @@ body, html, #root {
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   margin-top: 0.5rem;
   opacity: 0.9;
+  font-weight: 300; /* Lighter font weight */
+  max-width: 700px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* --- Hero Search Bar + Mic --- */
 .hero-search-wrapper {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
 }
 .hero-search-container {
   position: relative;
@@ -152,7 +156,7 @@ body, html, #root {
   width: 40px;
   border-radius: 50%;
   border: none;
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   color: var(--white);
   display: flex;
   align-items: center;
@@ -251,7 +255,7 @@ body, html, #root {
 
 .controls-results {
   margin-left: auto;
-  color: var(--text-light);
+  color: var(--accent-color);
   white-space: nowrap;
 }
 
@@ -294,6 +298,45 @@ body, html, #root {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
+  min-width: 60px; /* Give badges a minimum width */
+}
+.status-badge.current { background-color: rgba(59, 130, 246, 0.1); color: #2563eb; } /* Blue */
+.status-badge.record { background-color: rgba(245, 158, 11, 0.1); color: #d97706; } /* Amber */
+.status-badge.completed { background-color: rgba(16, 185, 129, 0.1); color: #059669; } /* Green */
+.status-badge.empty {
+    color: var(--text-light); /* Style for empty status */
+    font-style: italic;
+}
+
+/* --- Toast Notification Styles (Imported from react-toastify) --- */
+/* You also need to import the CSS in App.jsx */
+/* Customizations (Optional) */
+.Toastify__toast {
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px !important;
+}
+.Toastify__toast--success {
+  background: #EBF8F4 !important; /* Light green background */
+  color: #2D3748 !important;
+  border-left: 4px solid var(--green) !important;
+}
+.Toastify__toast--error {
+  background: #FFF5F5 !important; /* Light red background */
+  color: #2D3748 !important;
+  border-left: 4px solid var(--red) !important;
+}
+.Toastify__progress-bar {
+  background: var(--accent-color) !important;
 }
 
 /* --- Main Content --- */
@@ -350,11 +393,16 @@ body, html, #root {
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
-  vertical-align: top;
+  border-right: 1px solid var(--border-color); /* Add right border */
+  vertical-align: middle;
+}
+
+.data-table th:last-child, .data-table td:last-child {
+  border-right: none; /* Remove border from the last column */
 }
 
 .data-table th {
-  background-color: #f9fafb;
+  background-color: #cdcecf;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;

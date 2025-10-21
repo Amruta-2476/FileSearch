@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import axios from 'axios';
 import { Search, Mic, MicOff, Filter, X, FileText, ServerCrash, LogIn, LogOut, Plus, Upload, Download, Edit, Trash2 } from "lucide-react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import LoginModal from './components/LoginModal';
 import FileEditModal from './components/FileEditModal'; 
 import "./App.css";
@@ -201,20 +203,36 @@ export default function App() {
   };
 
   const handleSaveFile = async (fileData) => {
-    try {
-      if (editingFile) { await api.put(`/files/${editingFile.id}`, fileData); }
-      else { await api.post('/files', fileData); }
-      setShowFileEditModal(false); setEditingFile(null); fetchFiles();
-    } catch (error) { console.error('Failed to save file:', error); alert('Error saving file.'); }
-  };
+  try {
+    let response;
+    if (editingFile) {
+      response = await api.put(`/files/${editingFile.id}`, fileData);
+      toast.success(`File "${response.data.file_no}" updated successfully!`);
+    } else {
+      response = await api.post('/files', fileData);
+      toast.success(`File "${response.data.file_no}" created successfully!`);
+    }
+    setShowFileEditModal(false); setEditingFile(null); fetchFiles();
+  } catch (error) {
+    console.error('Failed to save file:', error);
+    toast.error('Error: Could not save file.'); 
+  }
+};
 
   const handleDeleteFile = async (fileId) => {
-    if (window.confirm('Delete this record permanently?')) {
-      try { await api.delete(`/files/${fileId}`); fetchFiles(); }
-      catch (error) { console.error('Failed to delete file:', error); alert('Error deleting file.'); }
+  // Keep window.confirm for safety
+  if (window.confirm('Delete this record permanently?')) {
+    try {
+      await api.delete(`/files/${fileId}`);
+      toast.success('File deleted successfully!'); 
+      fetchFiles();
+    } catch (error) {
+      console.error('Failed to delete file:', error);
+      toast.error('Error: Could not delete file.'); 
     }
-  };
-  
+  }
+};
+
   const handleOpenEditModal = (file = null) => {
     setEditingFile(file); setShowFileEditModal(true);
   };
@@ -226,18 +244,29 @@ export default function App() {
       const link = document.createElement('a'); link.href = url;
       link.setAttribute('download', `file_export_${Date.now()}.csv`);
       document.body.appendChild(link); link.click(); link.remove();
-    } catch (error) { console.error('Failed to export CSV:', error); alert('Error exporting data.'); }
+      toast.success('CSV export started successfully!'); 
+    } catch (error) { console.error('Failed to export CSV:', error); toast.error('Error: Could not export data.'); }
   };
+  
 
   const handleImportCSV = async (event) => {
     const file = event.target.files[0]; if (!file) return;
     const formData = new FormData(); formData.append('csvfile', file);
     try {
       const response = await api.post('/files/import', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-      alert(response.data.message); fetchFiles();
-    } catch (error) { console.error('Failed to import CSV:', error); alert('Error importing CSV.'); }
-    event.target.value = null;
-  };
+      if (response.status === 201 || response.status === 207) {
+        toast.success(response.data.message);
+    } else {
+        toast.warn(response.data.message || 'CSV import finished with warnings.');
+    }
+    fetchFiles();
+    } catch (error) {
+      console.error('Failed to import CSV:', error);
+      const errorMsg = error.response?.data?.message || 'Error: Could not import CSV.';
+    toast.error(errorMsg); // Use toast.error
+  }
+  event.target.value = null;
+};
 
   const activeFilterCount = Object.values(statusFilters).filter(Boolean).length + (remarkFilter !== "all" ? 1 : 0);
   
@@ -247,15 +276,22 @@ export default function App() {
     if (fetchError) return <tr><td colSpan={colSpan} className="table-empty error"><ServerCrash size={40} /><p>Failed to load data</p><span>Could not connect.</span></td></tr>;
     if (results.length === 0) return <tr><td colSpan={colSpan} className="table-empty"><FileText size={40} /><p>No files found</p><span>Adjust search or filters.</span></td></tr>;
 
+    const renderStatusBadge = (value, statusType) => {
+        if (value && value.trim() !== '') {
+            return <span className={`status-badge ${statusType}`}>{value}</span>;
+        }
+        return <span className="status-badge empty">-</span>; // Style for empty cells
+    };
+
     return results.map((r) => (
         <React.Fragment key={r.id}>
             <tr className="table-row-parent">
                 <td className="table-cell-fileno">{r.file_no}</td>
                 <td className="table-cell-filename">{r.file_name}</td>
-                <td className="table-cell-status">{r.current}</td>
-                <td className="table-cell-status">{r.record}</td>
-                <td className="table-cell-status">{r.completed}</td>
-                <td className="table-cell-remark">{r.remark}</td>
+                <td className="table-cell-status">{renderStatusBadge(r.current, 'current')}</td>
+                <td className="table-cell-status">{renderStatusBadge(r.record, 'record')}</td>
+                <td className="table-cell-status">{renderStatusBadge(r.completed, 'completed')}</td>
+                <td className="table-cell-remark">{r.remark || '-'}</td>
                 {isAdmin && (
                   <td className="table-cell-actions">
                     <button onClick={() => handleOpenEditModal(r)} className="action-btn edit-btn" title="Edit"><Edit size={16}/></button>
@@ -267,10 +303,10 @@ export default function App() {
                 <tr key={`${r.id}-sub-${idx}`} className="table-row-sub">
                     <td></td>
                     <td className="table-cell-filename sub"><span className="sub-indicator">↳</span>{s.name}</td>
-                    <td className="table-cell-status">{s.current}</td>
-                    <td className="table-cell-status">{s.record}</td>
-                    <td className="table-cell-status">{s.completed}</td>
-                    <td className="table-cell-remark">{s.remark}</td>
+                    <td className="table-cell-status">{renderStatusBadge(s.current, 'current')}</td>
+                    <td className="table-cell-status">{renderStatusBadge(s.record, 'record')}</td>
+                    <td className="table-cell-status">{renderStatusBadge(s.completed, 'completed')}</td>
+                    <td className="table-cell-remark">{s.remark || '-'}</td>
                     {isAdmin && <td></td>}
                 </tr>
             ))}
@@ -302,6 +338,9 @@ export default function App() {
       <div className="hero-section">
         <div className="hero-overlay"></div>
         <div className="hero-content">
+          <p className="hero-subtitle">
+            Instantly Locate Any Project File. Search Smarter, Build Faster.
+          </p>
           <div className="hero-search-wrapper">
             <div className="hero-search-container">
               <Search className="hero-search-icon" size={20} />
@@ -396,6 +435,19 @@ export default function App() {
           </table>
         </div>
       </main>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
