@@ -1,18 +1,18 @@
 # FileSearch
 
-FileSearch is a web app designed to efficiently manage, search, and organize project files and sub-files for architectural firms. 
-Built with a modern <b>React frontend</b> and a <b>Node.js backend</b>, it offers powerful search capabilities, flexible filtering, administrative controls for data management, and secure access. This system streamlines the process of finding crucial project documentation, enhancing productivity and organization.
+FileSearch is a web app that helps architectural firms organize, search, and manage project files effortlessly.
+It combines a modern **React frontend** with a **Node.js + MySQL backend**, offering fast search, smart filtering, CSV import/export, and admin-level control — all in one place.
 
 ## 🚀 Features
 
 * **🔍 Smart Search:** Find files/subfiles by number, name, or keywords.
 * **🎙️ Voice Search:** Hands-free searching.
 * **⚙️ Advanced Filters:** Filter by status — Current, Record, Completed, Cancelled, etc.
-* **🔒 Authentication:** Only admins can modify data (**JWT + bcrypt**).
+* **🔒 Secure Authentication:** Only admins can modify data (**JWT-based login with password hashing (bcrypt)**).
 * **🧑‍💼 Admin Panel:**<br>
        * Add / Edit / Delete file records<br>
-       * Import new data via CSV<br>
-       * Export all data as CSV
+       * 📥 CSV Import: Bulk upload files — auto-groups subfiles, skips duplicates, and updates valid records only.<br>
+       * 📤 CSV Export: Download all data as a clean, structured CSV preserving parent–subfile hierarchy.
 * **📱 Responsive UI:** Works smoothly on any device.
 
 ## 🖥️ Usage
