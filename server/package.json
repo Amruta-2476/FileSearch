@@ -1,0 +1,20 @@
+{
+  "name": "file-finder-server",
+  "version": "1.0.0",
+  "description": "Backend for the Smart File Finder application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.2",
+    "papaparse": "^5.5.3"
+  }
+}

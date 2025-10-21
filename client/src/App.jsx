@@ -1,17 +1,31 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
-import { Search, Mic, MicOff, Filter, X, FileText } from "lucide-react";
+import axios from 'axios';
+import { Search, Mic, MicOff, Filter, X, FileText, ServerCrash, LogIn, LogOut, Plus, Upload, Download, Edit, Trash2 } from "lucide-react";
+import LoginModal from './components/LoginModal';
+import FileEditModal from './components/FileEditModal'; 
 import "./App.css";
 
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api',
+});
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, error => Promise.reject(error));
+
 function statusInRecord(rec, statusKey) {
-  const check = (val) =>
-    !!val && val.toString().trim().length > 0 && val.toString().toLowerCase().includes(statusKey);
+  const check = (val) => !!val && val.toString().trim().length > 0; 
   if (check(rec[statusKey])) return true;
   if (rec.sub_files && rec.sub_files.length) {
-    return rec.sub_files.some((s) => check(s[statusKey]));
+    return rec.sub_files.some((s) => check(s[statusKey])); 
   }
   return false;
 }
 
+// Check if a record matches the remark ('all', 'has', 'none', 'cancel')
 function remarkMatches(rec, remarkFilter) {
   const mainHas = !!rec.remark && rec.remark.toString().trim().length > 0;
   const subHas = rec.sub_files && rec.sub_files.some((s) => s.remark && s.remark.toString().trim().length > 0);
@@ -21,11 +35,9 @@ function remarkMatches(rec, remarkFilter) {
   if (remarkFilter === "has") return anyRemark;
   if (remarkFilter === "none") return !anyRemark;
   if (remarkFilter === "cancel") {
-    const checkCancel = (val) =>
-      !!val && val.toString().toLowerCase().includes("cancel");
+    const checkCancel = (val) => !!val && val.toString().toLowerCase().includes("cancel");
     if (checkCancel(rec.remark) || checkCancel(rec.completed)) return true;
-    if (rec.sub_files && rec.sub_files.some((s) => checkCancel(s.remark) || checkCancel(s.completed)))
-      return true;
+    if (rec.sub_files && rec.sub_files.some((s) => checkCancel(s.remark) || checkCancel(s.completed))) return true; 
     return false;
   }
   return true;
@@ -36,148 +48,138 @@ function recordMatchesQuery(rec, q) {
   const qq = q.toLowerCase();
   if ((rec.file_no || "").toString().toLowerCase().includes(qq)) return true;
   if ((rec.file_name || "").toString().toLowerCase().includes(qq)) return true;
-  if (rec.sub_files && rec.sub_files.some((s) => (s.name || "").toString().toLowerCase().includes(qq)))
-    return true;
+  if (rec.sub_files && rec.sub_files.some((s) => (s.name || "").toString().toLowerCase().includes(qq))) return true;
   return false;
 }
 
 export default function App() {
   const [records, setRecords] = useState([]);
   const [query, setQuery] = useState("");
-  const [statusFilters, setStatusFilters] = useState({
-    current: false,
-    record: false,
-    completed: false,
-  });
-  const [remarkFilter, setRemarkFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [showFilters, setShowFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
   
+  const [statusFilters, setStatusFilters] = useState({ current: false, record: false, completed: false });
+  const [remarkFilter, setRemarkFilter] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Admin and Modal States
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showFileEditModal, setShowFileEditModal] = useState(false); 
+  const [editingFile, setEditingFile] = useState(null);
+  const fileInputRef = useRef(null); 
+
   // Voice Search States
   const [isListening, setIsListening] = useState(false);
   const [voiceError, setVoiceError] = useState("");
   const recognitionRef = useRef(null);
 
-  // Initialize Speech Recognition
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
     if (!SpeechRecognition) {
-      setVoiceError("Voice search not supported in this browser");
+      setVoiceError("Voice search not supported");
       return;
     }
-
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
-    recognition.interimResults = false;
+    recognition.interimResults = false; 
     recognition.lang = 'en-US';
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setQuery(transcript);
+      setQuery(transcript); 
       setIsListening(false);
     };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
+    recognition.onend = () => setIsListening(false);
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       setIsListening(false);
-      
-      if (event.error === 'no-speech') {
-        setVoiceError('No speech detected. Please try again.');
-      } else if (event.error === 'not-allowed') {
-        setVoiceError('Microphone access denied. Please allow microphone access.');
-      } else {
-        setVoiceError(`Error: ${event.error}`);
-      }
-      
-      setTimeout(() => setVoiceError(""), 3000);
+      if (event.error === 'no-speech') setVoiceError('No speech detected.');
+      else if (event.error === 'not-allowed') setVoiceError('Mic access denied.');
+      else setVoiceError(`Error: ${event.error}`);
+      setTimeout(() => setVoiceError(""), 3000); 
     };
-
     recognitionRef.current = recognition;
-
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.abort();
-      }
-    };
+    return () => recognitionRef.current?.abort(); 
   }, []);
-
-  const toggleVoiceSearch = () => {
-    if (!recognitionRef.current) {
-      setVoiceError("Voice search not available");
-      setTimeout(() => setVoiceError(""), 3000);
-      return;
-    }
-
-    if (isListening) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    } else {
-      setVoiceError("");
-      setIsListening(true);
-      try {
-        recognitionRef.current.start();
-      } catch (error) {
-        console.error('Error starting recognition:', error);
-        setIsListening(false);
-        setVoiceError("Could not start voice search");
-        setTimeout(() => setVoiceError(""), 3000);
-      }
-    }
-  };
 
   useEffect(() => {
-    fetch("/cleaned_files.json")
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load cleaned_files.json");
-        return r.json();
-      })
-      .then((data) => {
-        const normalized = data.map((d) => ({
-          file_no: d.file_no || "",
-          file_name: d.file_name || "",
-          current: d.current || "",
-          record: d.record || "",
-          completed: d.completed || "",
-          remark: d.remark || "",
-          sub_files: Array.isArray(d.sub_files) ? d.sub_files : [],
-        }));
-        setRecords(normalized);
-      })
-      .catch((err) => {
-        console.error(err);
-        setRecords([]);
-      });
+    const token = localStorage.getItem('token');
+    if (token) setIsAdmin(true);
+    fetchFiles();
   }, []);
+  
+  const fetchFiles = async () => {
+    setIsLoading(true);
+    try {
+      const response = await api.get('/files');
+      const normalized = response.data.map(d => ({...d, sub_files: d.sub_files || [] }));
+      setRecords(normalized);
+      setFetchError(null);
+    } catch (err) {
+      console.error("Failed to fetch files:", err);
+      setFetchError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const activeStatusFilters = Object.entries(statusFilters).filter(([, v]) => v).map(([k]) => k);
     
+    // Apply filters first
     const filtered = records.filter((rec) => {
-      if (!recordMatchesQuery(rec, q)) return false;
-      if (activeStatusFilters.length > 0) {
-        const anyStatusMatch = activeStatusFilters.some((sf) => statusInRecord(rec, sf));
-        if (!anyStatusMatch) return false;
+      if (!recordMatchesQuery(rec, q)) return false; 
+      if (activeStatusFilters.length > 0 && !activeStatusFilters.every(sfKey => statusInRecord(rec, sfKey))) { 
+          return false;
       }
-      if (!remarkMatches(rec, remarkFilter)) return false;
+      if (!remarkMatches(rec, remarkFilter)) return false; 
       return true;
     });
 
-    const sorted = [...filtered].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       const an = (a.file_name || "").toString().toLowerCase();
       const bn = (b.file_name || "").toString().toLowerCase();
+      
+      if (!an && bn) return sortOrder === "asc" ? 1 : -1; // Empty names go last in asc, first in desc
+      if (an && !bn) return sortOrder === "asc" ? -1 : 1; // Empty names go last in asc, first in desc
+      if (!an && !bn) return 0; // Both empty, keep original relative order
+
+      // Normal string comparison
       if (an < bn) return sortOrder === "asc" ? -1 : 1;
       if (an > bn) return sortOrder === "asc" ? 1 : -1;
+      
+      const aNo = (a.file_no || "").toString().toLowerCase();
+      const bNo = (b.file_no || "").toString().toLowerCase();
+      if (aNo < bNo) return -1; 
+      if (aNo > bNo) return 1;
+
       return 0;
     });
-
-    return sorted;
   }, [records, query, statusFilters, remarkFilter, sortOrder]);
+
+  const toggleVoiceSearch = () => {
+    if (!recognitionRef.current) {
+        setVoiceError("Voice search not available");
+        setTimeout(() => setVoiceError(""), 3000);
+        return;
+    }
+    if (isListening) {
+      recognitionRef.current.stop();
+    } else {
+      setVoiceError("");
+      try {
+        recognitionRef.current.start();
+        setIsListening(true);
+      } catch (error) {
+        console.error('Error starting recognition:', error);
+        setVoiceError("Could not start voice search");
+        setTimeout(() => setVoiceError(""), 3000);
+      }
+    }
+  };
 
   function toggleStatusFilter(key) {
     setStatusFilters((s) => ({ ...s, [key]: !s[key] }));
@@ -186,92 +188,162 @@ export default function App() {
   function clearFilters() {
     setStatusFilters({ current: false, record: false, completed: false });
     setRemarkFilter("all");
-    setQuery("");
   }
 
+  const handleLoginSuccess = (token) => {
+    localStorage.setItem('token', token);
+    setIsAdmin(true);
+    setShowLoginModal(false);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAdmin(false);
+  };
+
+  const handleSaveFile = async (fileData) => {
+    try {
+      if (editingFile) { await api.put(`/files/${editingFile.id}`, fileData); }
+      else { await api.post('/files', fileData); }
+      setShowFileEditModal(false); setEditingFile(null); fetchFiles();
+    } catch (error) { console.error('Failed to save file:', error); alert('Error saving file.'); }
+  };
+
+  const handleDeleteFile = async (fileId) => {
+    if (window.confirm('Delete this record permanently?')) {
+      try { await api.delete(`/files/${fileId}`); fetchFiles(); }
+      catch (error) { console.error('Failed to delete file:', error); alert('Error deleting file.'); }
+    }
+  };
+  
+  const handleOpenEditModal = (file = null) => {
+    setEditingFile(file); setShowFileEditModal(true);
+  };
+  
+  const handleExportCSV = async () => {
+    try {
+      const response = await api.get('/files/export', { responseType: 'blob' });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a'); link.href = url;
+      link.setAttribute('download', `file_export_${Date.now()}.csv`);
+      document.body.appendChild(link); link.click(); link.remove();
+    } catch (error) { console.error('Failed to export CSV:', error); alert('Error exporting data.'); }
+  };
+
+  const handleImportCSV = async (event) => {
+    const file = event.target.files[0]; if (!file) return;
+    const formData = new FormData(); formData.append('csvfile', file);
+    try {
+      const response = await api.post('/files/import', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+      alert(response.data.message); fetchFiles();
+    } catch (error) { console.error('Failed to import CSV:', error); alert('Error importing CSV.'); }
+    event.target.value = null;
+  };
+
   const activeFilterCount = Object.values(statusFilters).filter(Boolean).length + (remarkFilter !== "all" ? 1 : 0);
+  
+  const renderTableContent = () => {
+    const colSpan = isAdmin ? 7 : 6;
+    if (isLoading) return <tr><td colSpan={colSpan} className="table-empty"><div className="spinner"></div><p>Loading files...</p></td></tr>;
+    if (fetchError) return <tr><td colSpan={colSpan} className="table-empty error"><ServerCrash size={40} /><p>Failed to load data</p><span>Could not connect.</span></td></tr>;
+    if (results.length === 0) return <tr><td colSpan={colSpan} className="table-empty"><FileText size={40} /><p>No files found</p><span>Adjust search or filters.</span></td></tr>;
+
+    return results.map((r) => (
+        <React.Fragment key={r.id}>
+            <tr className="table-row-parent">
+                <td className="table-cell-fileno">{r.file_no}</td>
+                <td className="table-cell-filename">{r.file_name}</td>
+                <td className="table-cell-status">{r.current}</td>
+                <td className="table-cell-status">{r.record}</td>
+                <td className="table-cell-status">{r.completed}</td>
+                <td className="table-cell-remark">{r.remark}</td>
+                {isAdmin && (
+                  <td className="table-cell-actions">
+                    <button onClick={() => handleOpenEditModal(r)} className="action-btn edit-btn" title="Edit"><Edit size={16}/></button>
+                    <button onClick={() => handleDeleteFile(r.id)} className="action-btn delete-btn" title="Delete"><Trash2 size={16}/></button>
+                  </td>
+                )}
+            </tr>
+            {r.sub_files && r.sub_files.map((s, idx) => (
+                <tr key={`${r.id}-sub-${idx}`} className="table-row-sub">
+                    <td></td>
+                    <td className="table-cell-filename sub"><span className="sub-indicator">↳</span>{s.name}</td>
+                    <td className="table-cell-status">{s.current}</td>
+                    <td className="table-cell-status">{s.record}</td>
+                    <td className="table-cell-status">{s.completed}</td>
+                    <td className="table-cell-remark">{s.remark}</td>
+                    {isAdmin && <td></td>}
+                </tr>
+            ))}
+        </React.Fragment>
+    ));
+  };
 
   return (
     <div className="app-wrapper">
-      {/* Hero Section with Background */}
-      <div className="hero-section">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <h1 className="hero-title">Smart File Finder</h1>
-          <p className="hero-subtitle">Intelligent file search system for architecture projects</p>
-          
-          {/* Search Bar */}
-          <div className="hero-search-wrapper">
-            <div className="hero-search-container">
-              <Search className="hero-search-icon" size={20} />
-              <input
-                type="text"
-                placeholder={isListening ? "Listening..." : "Search by file name, file number, or sub-file..."}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className={`hero-search-input ${isListening ? 'listening' : ''}`}
-              />
-              <button 
-                onClick={toggleVoiceSearch} 
-                className={`hero-mic-button ${isListening ? 'listening' : ''}`}
-                title={isListening ? "Stop listening" : "Start voice search"}
-              >
-                {isListening ? <MicOff size={20} /> : <Mic size={20} />}
-              </button>
-            </div>
-            
-            {voiceError && (
-              <div className="voice-error-inline">{voiceError}</div>
-            )}
-            
-            {isListening && (
-              <div className="voice-listening-inline">🎤 Listening... Speak now!</div>
+      {/* Modals */}
+      {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onLoginSuccess={handleLoginSuccess} />}
+      {showFileEditModal && <FileEditModal file={editingFile} onClose={() => setShowFileEditModal(false)} onSave={handleSaveFile} />}
+
+      {/* Header with Login/Logout */}
+      <header className="app-header">
+        <div className="header-content">
+          <h1 className="header-title">Smart File Finder</h1>
+          <div className="header-actions">
+            {isAdmin ? (
+              <button onClick={handleLogout} className="header-btn"><LogOut size={16} /> Logout</button>
+            ) : (
+              <button onClick={() => setShowLoginModal(true)} className="header-btn"><LogIn size={16} /> Admin Login</button>
             )}
           </div>
         </div>
+      </header>
+      
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <div className="hero-search-wrapper">
+            <div className="hero-search-container">
+              <Search className="hero-search-icon" size={20} />
+              <input type="text" placeholder={isListening ? "Listening..." : "Search by file name, file number, or sub-file..."} value={query} onChange={(e) => setQuery(e.target.value)} className={`hero-search-input ${isListening ? 'listening' : ''}`} />
+              <button onClick={toggleVoiceSearch} className={`hero-mic-button ${isListening ? 'listening' : ''}`} title={isListening ? "Stop listening" : "Start voice search"}>
+                {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+              </button>
+            </div>
+            {voiceError && <div className="voice-error-inline">{voiceError}</div>}
+            {isListening && <div className="voice-listening-inline">🎤 Listening... Speak now!</div>}
+          </div>
+        </div>
       </div>
-
-      {/* Controls Bar */}
+      
+      {/* Controls Bar (Filters & Sort) */}
       <div className="controls-bar">
         <div className="controls-bar-content">
           <button onClick={() => setShowFilters(!showFilters)} className="controls-filter-btn">
-            <Filter size={16} />
-            <span>Filters</span>
-            {activeFilterCount > 0 && (
-              <span className="controls-filter-badge">{activeFilterCount}</span>
-            )}
+            <Filter size={16} /><span>Filters</span>
+            {activeFilterCount > 0 && <span className="controls-filter-badge">{activeFilterCount}</span>}
           </button>
-
           <div className="controls-sort">
-            <span className="controls-label">Sort:</span>
+            <span className="controls-label">Sort By Name:</span>
             <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="controls-sort-select">
               <option value="asc">A → Z</option>
               <option value="desc">Z → A</option>
             </select>
           </div>
-
-          <div className="controls-results">
-            Showing <strong>{results.length}</strong> of {records.length} files
-          </div>
+          <div className="controls-results">Showing <strong>{results.length}</strong> {results.length === 1 ? 'file' : 'files'}</div>
         </div>
-
-        {/* Expandable Filters */}
+        {/* Expanded Filter Section */}
         {showFilters && (
           <div className="controls-filters-expanded">
             <div className="filter-group-inline">
               <strong>Status:</strong>
               {Object.entries({ current: 'Current', record: 'Record', completed: 'Completed' }).map(([key, label]) => (
                 <label key={key} className="filter-checkbox-inline">
-                  <input
-                    type="checkbox"
-                    checked={statusFilters[key]}
-                    onChange={() => toggleStatusFilter(key)}
-                  />
+                  <input type="checkbox" checked={statusFilters[key]} onChange={() => toggleStatusFilter(key)} />
                   <span>{label}</span>
                 </label>
               ))}
             </div>
-
             <div className="filter-group-inline">
               <strong>Remark:</strong>
               <select value={remarkFilter} onChange={(e) => setRemarkFilter(e.target.value)} className="filter-select-inline">
@@ -281,73 +353,49 @@ export default function App() {
                 <option value="cancel">Cancelled</option>
               </select>
             </div>
-
-            {(activeFilterCount > 0 || query) && (
-              <button onClick={clearFilters} className="controls-clear-btn">
-                <X size={14} />
-                Clear All
-              </button>
+            {(activeFilterCount > 0) && (
+              <button onClick={clearFilters} className="controls-clear-btn"><X size={14} /> Clear Filters</button>
             )}
           </div>
         )}
       </div>
 
-      {/* Table Section */}
-      <div className="table-section">
+      {/* Main Table Section */}
+      <main className="app-main table-section">
+        {/* Admin Controls (Add, Import, Export)*/}
+        {isAdmin && (
+          <div className="admin-controls">
+              <button className="admin-btn" onClick={() => handleOpenEditModal()}>
+                  <Plus size={16} /> Add New File
+              </button>
+              <button className="admin-btn" onClick={() => fileInputRef.current.click()}>
+                  <Upload size={16} /> Import CSV
+              </button>
+              <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImportCSV} accept=".csv" />
+              <button className="admin-btn" onClick={handleExportCSV}>
+                  <Download size={16} /> Export CSV
+              </button>
+          </div>
+        )}
+        
+        {/* Table */}
         <div className="table-container">
           <table className="data-table">
             <thead>
               <tr>
-                <th>FILE NO</th>
-                <th>FILE NAME</th>
-                <th>CURRENT</th>
-                <th>RECORD</th>
-                <th>COMPLETED</th>
-                <th>REMARK</th>
+                <th className="table-header-fileno">File No</th>
+                <th className="table-header-filename">File Name</th>
+                <th className="table-header-status">Current</th>
+                <th className="table-header-status">Record</th>
+                <th className="table-header-status">Completed</th>
+                <th className="table-header-remark">Remark</th>
+                {isAdmin && <th className="table-header-actions">Actions</th>}
               </tr>
             </thead>
-            <tbody>
-              {results.length === 0 ? (
-                <tr>
-                  <td colSpan="6" className="table-empty">
-                    <FileText size={40} />
-                    <p>No files found</p>
-                    <span>Try adjusting your search or filters</span>
-                  </td>
-                </tr>
-              ) : (
-                results.map((r) => (
-                  <React.Fragment key={r.file_no + "-" + (r.file_name || Math.random())}>
-                    <tr className="table-row-parent">
-                      <td className="table-cell-fileno">{r.file_no}</td>
-                      <td className="table-cell-filename">{r.file_name}</td>
-                      <td className="table-cell-status current">{r.current}</td>
-                      <td className="table-cell-status record">{r.record}</td>
-                      <td className="table-cell-status completed">{r.completed}</td>
-                      <td className="table-cell-remark">{r.remark}</td>
-                    </tr>
-
-                    {r.sub_files &&
-                      r.sub_files.map((s, idx) => (
-                        <tr key={r.file_no + "-sub-" + idx} className="table-row-sub">
-                          <td className="table-cell-fileno"></td>
-                          <td className="table-cell-filename sub">
-                            <span className="sub-indicator">↳</span>
-                            {s.name}
-                          </td>
-                          <td className="table-cell-status current">{s.current}</td>
-                          <td className="table-cell-status record">{s.record}</td>
-                          <td className="table-cell-status completed">{s.completed}</td>
-                          <td className="table-cell-remark">{s.remark}</td>
-                        </tr>
-                      ))}
-                  </React.Fragment>
-                ))
-              )}
-            </tbody>
+            <tbody>{renderTableContent()}</tbody>
           </table>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

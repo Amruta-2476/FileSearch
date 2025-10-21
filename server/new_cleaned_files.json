@@ -10,7 +10,7 @@
   },
   {
     "file_no": "TC-2",
-    "file_name": "TMC- WATER DEPT (OLD FILE NAME - GODAY)",
+    "file_name": "TMC- WATER DEPT OLD FILE NAME - GODAY",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -28,7 +28,7 @@
   },
   {
     "file_no": "TC- 3",
-    "file_name": "TMC- THIRD FLOOR- TOILET BLOCK  (OLD FILE NAME - MADHUBAN)",
+    "file_name": "TMC- THIRD FLOOR- TOILET BLOCK OLD FILE NAME - MADHUBAN",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -45,22 +45,16 @@
     "sub_files": [
       {
         "name": "MADHUBAN",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 1"
       },
       {
         "name": "ISH-DOC",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 1"
       },
       {
         "name": "DRAWING",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 1"
       }
@@ -77,7 +71,7 @@
   },
   {
     "file_no": "TC-6",
-    "file_name": "TOWN DEVELOPMENT DEPT. (TDD) (OLD FILE NAME- BHALUMAMA)",
+    "file_name": "TOWN DEVELOPMENT DEPT. (TDD) OLD FILE NAME- BHALUMAMA",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -86,7 +80,7 @@
   },
   {
     "file_no": "TC-7",
-    "file_name": "TMC- KAUSA MARKET (OLD FILE NAME-DESAI KAMUBHAI,CONOVAL)",
+    "file_name": "TMC- KAUSA MARKET OLD FILE NAME-DESAI KAMUBHAI,CONOVAL",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -95,7 +89,7 @@
   },
   {
     "file_no": "TC-8",
-    "file_name": "GADKARI  RANGAYATAN (OLD FILE NAME - LALYA)",
+    "file_name": "GADKARI  RANGAYATAN OLD FILE NAME - LALYA",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -131,7 +125,7 @@
   },
   {
     "file_no": "TC-12",
-    "file_name": "TRUCK TERMINAL (OLD FILE NAME - JASTHA)",
+    "file_name": "TRUCK TERMINAL OLD FILE NAME - JASTHA",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -221,7 +215,7 @@
   },
   {
     "file_no": "TC-21",
-    "file_name": "DHYANASADHANA COLLEGE (OLD FILE NAME -MOHITE)",
+    "file_name": "DHYANASADHANA COLLEGE OLD FILE NAME -MOHITE",
     "current": "",
     "record": "RECORD",
     "completed": "",
@@ -355,17 +349,11 @@
     "sub_files": [
       {
         "name": "A (CORROS.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B  (CORROS.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -469,26 +457,20 @@
     "sub_files": []
   },
   {
-    "file_no": "C-45A",
-    "file_name": "A BADRI CHAWL - C.T. S. NO. 15, T. NO. 15, Veer Savarkar Path, Three Petrol Pump, Thane.",
+    "file_no": "C-45",
+    "file_name": "A) BADRI CHAWL - C.T. S. NO. 15, T. NO. 15, Veer Savarkar Path, Three Petrol Pump, Thane.",
     "current": "CURRENT",
     "record": "",
     "completed": "",
     "remark": "2ND FLOOR LOFT",
     "sub_files": [
       {
-        "name": "B DRAWING FILE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B) DRAWING FILE",
+        "current": "CURRENT"
       },
       {
-        "name": "C R.C.C. DRAWINGS",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "C) R.C.C. DRAWINGS",
+        "current": "CURRENT"
       }
     ]
   },
@@ -501,11 +483,7 @@
     "remark": "CANCELLED",
     "sub_files": [
       {
-        "name": "JOGALEKAR",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "JOGALEKAR"
       }
     ]
   },
@@ -591,38 +569,23 @@
     "sub_files": [
       {
         "name": "A (CORROS.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B (DRAW.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B2 (DRAW.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B3 (DRAW.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B4(DRAW.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -726,24 +689,15 @@
     "sub_files": [
       {
         "name": "B) FINAL PLOT 286 - PANCHPAKHADI, TAL. & DIST. THANE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "C) FINAL PLOT 425 -T.P.S.NO.1,AT PANCHPAKHADI,TAL. & DIST. THANE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "D) OM SAI SIDDHESHWAR CO-OP. HSG. SOCIETY, F.P. 425 THANE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -893,12 +847,16 @@
   },
   {
     "file_no": "C-83",
-    "file_name": "PRABHAT CO. OP. HSG. SOC (BHASKAR COLONY)",
+    "file_name": "PRABHAT CO. OP. HSG. SOC",
     "current": "",
     "record": "",
     "completed": "",
     "remark": "CANCELLED & DES",
-    "sub_files": []
+    "sub_files": [
+      {
+        "name": "(BHASKAR COLONY)"
+      }
+    ]
   },
   {
     "file_no": "C-84",
@@ -1035,24 +993,14 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A. DOCUMENT",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A. DOCUMENT"
       },
       {
         "name": "B. DRAWING FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
         "remark": "G - 1"
       },
       {
         "name": "C. DRAWING FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
         "remark": "G - 1"
       }
     ]
@@ -1076,9 +1024,6 @@
     "sub_files": [
       {
         "name": "B ( WORKING DRAW.)",
-        "current": "",
-        "record": "",
-        "completed": "",
         "remark": "G - 3"
       }
     ]
@@ -1111,16 +1056,12 @@
     "sub_files": [
       {
         "name": "B  KHAN COMM. (TIWARI)",
-        "current": "",
         "record": "RECORD",
-        "completed": "",
         "remark": "G - 1"
       },
       {
         "name": "C. M.H. KHAN",
-        "current": "",
         "record": "RECORD",
-        "completed": "",
         "remark": "G - 1"
       }
     ]
@@ -1135,17 +1076,11 @@
     "sub_files": [
       {
         "name": "A. DOCUMENT",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B. DRAWING FILE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -1336,92 +1271,115 @@
     "record": "",
     "completed": "",
     "remark": "",
-    "sub_files": [
-      {
-        "name": "A (K. AGARWAL)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": "NOT AVAILABLE"
-      },
-      {
-        "name": "B (DOCUMENT)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "C (DOCUMENT)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "D (CORS.WITH DEPT.& CLIENT)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "E (DRG. FROM ABHIKALPAN) UNNATHI CLIFF -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "G1 (COSMOS) DRAWING FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "G2 (COSMOS PARADISE)- DRAWING FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "H (SUDHA BHAI BUNGLOW)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "I -A  (SURYA)   DRAWING FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "I -B  (SURYA)   DOCUMENT",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "SANCTIONED MUNICIPAL DRAWINGS",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      },
-      {
-        "name": "DOCUMENTS (C.F.O. N.O.C.)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
-      }
-    ]
+    "sub_files": []
+  },
+  {
+    "file_no": "1",
+    "file_name": "A (K. AGARWAL)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "NOT AVAILABLE",
+    "sub_files": []
+  },
+  {
+    "file_no": "2",
+    "file_name": "B (DOCUMENT)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "3",
+    "file_name": "C (DOCUMENT)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "4",
+    "file_name": "D (CORS.WITH DEPT.& CLIENT)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "5",
+    "file_name": "E (DRG. FROM ABHIKALPAN) UNNATHI CLIFF -1",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "6",
+    "file_name": "G1 (COSMOS) DRAWING FILE",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "7",
+    "file_name": "G2 (COSMOS PARADISE)- DRAWING FILE",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "8",
+    "file_name": "H (SUDHA BHAI BUNGLOW)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "9",
+    "file_name": "I -A  (SURYA)   DRAWING FILE",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "10",
+    "file_name": "I -B  (SURYA)   DOCUMENT",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "1",
+    "file_name": "SANCTIONED MUNICIPAL DRAWINGS",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
+  },
+  {
+    "file_no": "2",
+    "file_name": "DOCUMENTS (C.F.O. N.O.C.)",
+    "current": "",
+    "record": "",
+    "completed": "",
+    "remark": "",
+    "sub_files": []
   },
   {
     "file_no": "C-126",
@@ -1478,29 +1436,21 @@
     "sub_files": [
       {
         "name": "A (SCHOOL NO.1)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 7"
       },
       {
         "name": "B  (WORKING DRAW.)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 7"
       },
       {
         "name": "C  (CONTRACTORS  BILL)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 7"
       },
       {
         "name": "D (3 RD  FLR.)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 7"
       }
@@ -1615,15 +1565,11 @@
     "sub_files": [
       {
         "name": "A  (MAYUR CO. HSG. SOC.)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 5"
       },
       {
         "name": "B  (WORKING DRAWING)",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 5"
       }
@@ -1639,52 +1585,25 @@
     "sub_files": [
       {
         "name": "B  MODELA WOOLEN MILLS (CORS.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
-        "name": "DOCUMENTS - 1,2,3",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DOCUMENTS - 1,2,3"
       },
       {
-        "name": "MMRDA - 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "MMRDA - 2"
       },
       {
-        "name": "MOEF - 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "MOEF - 1"
       },
       {
-        "name": "CORRESPONDENCE WITH CLIENT-1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDENCE WITH CLIENT-1"
       },
       {
-        "name": "CORRESPONDENCE WITH DEPT-1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDENCE WITH DEPT-1"
       },
       {
-        "name": "DRG - 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DRG - 2"
       }
     ]
   },
@@ -1698,17 +1617,12 @@
     "sub_files": [
       {
         "name": "A",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 7"
       },
       {
         "name": "B (EXTENSION)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -1911,52 +1825,30 @@
     "sub_files": [
       {
         "name": "A-DOCUMENT",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B-T.D.R.",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "C1-DRAWING FROM HAFEEZ CONTRACTOR",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "C2-DRAWING FROM HAFEEZ CONTRACTOR",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "D- MULLA 7/12",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "E- DRAWING FROM N.G. DHANGIBHAI",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
-        "name": "N",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "N"
       }
     ]
   },
@@ -2141,38 +2033,23 @@
     "sub_files": [
       {
         "name": "A.  DOCUMENT",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "B. DOCUMENT",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "C. DRAWING FILE",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "D. CORR. WITH DEPARTMENT & CLIENT",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "E. TYPE 'D' (TOWER)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -2186,17 +2063,10 @@
     "sub_files": [
       {
         "name": "A  DRG.",
-        "current": "",
-        "record": "",
-        "completed": "COMPLETED",
-        "remark": ""
+        "completed": "COMPLETED"
       },
       {
-        "name": "B  DOC.",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B  DOC."
       }
     ]
   },
@@ -2237,17 +2107,11 @@
     "sub_files": [
       {
         "name": "A- CIVIL WORK",
-        "current": "",
-        "record": "",
         "completed": "COMPLETED",
         "remark": "G - 6"
       },
       {
-        "name": "B- INTERIOR FILE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B- INTERIOR FILE"
       }
     ]
   },
@@ -2297,17 +2161,10 @@
     "sub_files": [
       {
         "name": "A  WORKING DRG.",
-        "current": "",
-        "record": "",
-        "completed": "COMPLETED",
-        "remark": ""
+        "completed": "COMPLETED"
       },
       {
-        "name": "B  WORKING DRG.",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B  WORKING DRG."
       }
     ]
   },
@@ -2411,23 +2268,17 @@
     "sub_files": [
       {
         "name": "A  DOC.",
-        "current": "",
         "record": "RECORD",
-        "completed": "",
         "remark": "G - 4"
       },
       {
         "name": "B  CORRS.",
-        "current": "",
         "record": "RECORD",
-        "completed": "",
         "remark": "G - 4"
       },
       {
         "name": "C  REPAIRING WORK",
-        "current": "",
         "record": "RECORD",
-        "completed": "",
         "remark": "G - 4"
       }
     ]
@@ -2658,17 +2509,11 @@
     "sub_files": [
       {
         "name": "A  DRG.",
-        "current": "",
-        "record": "",
-        "completed": "COMPLETED",
-        "remark": ""
+        "completed": "COMPLETED"
       },
       {
         "name": "B  DOC.",
-        "current": "",
-        "record": "",
-        "completed": "COMPLETED",
-        "remark": ""
+        "completed": "COMPLETED"
       }
     ]
   },
@@ -2798,24 +2643,13 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A  M/S I.LEAD",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A  M/S I.LEAD"
       },
       {
-        "name": "B  DRG.",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B  DRG."
       },
       {
         "name": "C  FACTORY BUILDING",
-        "current": "",
-        "record": "",
-        "completed": "",
         "remark": "G - 3"
       }
     ]
@@ -2892,18 +2726,10 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A) BUILDING PROPOSAL",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A) BUILDING PROPOSAL"
       },
       {
-        "name": "B) GHODBUNDER ROAD - T.D.R",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B) GHODBUNDER ROAD - T.D.R"
       }
     ]
   },
@@ -2925,11 +2751,7 @@
     "remark": "G - 6",
     "sub_files": [
       {
-        "name": "B- THE PAPER PRODUCTS (T.D.R.)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B- THE PAPER PRODUCTS (T.D.R.)"
       }
     ]
   },
@@ -3257,25 +3079,13 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A- DOCUMENT",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A- DOCUMENT"
       },
       {
-        "name": "B- DRAWING",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B- DRAWING"
       },
       {
-        "name": "C- LOKVRUKSHA",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "C- LOKVRUKSHA"
       }
     ]
   },
@@ -3288,25 +3098,14 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A. BLDG. PROPOSAL",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A. BLDG. PROPOSAL"
       },
       {
-        "name": "B. SECONDARY SCHOOL RESERVATION",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B. SECONDARY SCHOOL RESERVATION"
       },
       {
         "name": "C. MUNICIPAL COMMISSIONER BUNGLOW",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -3437,10 +3236,7 @@
     "sub_files": [
       {
         "name": "THDC LTD. - B (T . D. R.)",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -3678,102 +3474,47 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "Document 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Document 1"
       },
       {
-        "name": "Document 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Document 2"
       },
       {
-        "name": "Sanctioned documents - I",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Sanctioned documents - I"
       },
       {
-        "name": "Sanctioned documents - II",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Sanctioned documents - II"
       },
       {
-        "name": "O.C. documents, CFO NOC, STP, SWD NOC",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "O.C. documents, CFO NOC, STP, SWD NOC"
       },
       {
-        "name": "Correspondence - Dept.",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Correspondence - Dept."
       },
       {
-        "name": "Correspondence - Client",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Correspondence - Client"
       },
       {
-        "name": "Scheme Drg",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Scheme Drg"
       },
       {
-        "name": "WD- Bldg II",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "WD- Bldg II"
       },
       {
-        "name": "Club house podium",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Club house podium"
       },
       {
-        "name": "Bldg I",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Bldg I"
       },
       {
-        "name": "ACC Campus - documents",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "ACC Campus - documents"
       },
       {
-        "name": "Correspondence",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "Correspondence"
       },
       {
         "name": "A.C.C. - Amenity Open Space TDR",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -3795,67 +3536,31 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "DOCUMENT - 1,2,3,4",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DOCUMENT - 1,2,3,4"
       },
       {
-        "name": "SANCTIONED DOC. DRG.- 1,2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SANCTIONED DOC. DRG.- 1,2"
       },
       {
-        "name": "NOC -OC DOCUMENTS - 1,2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "NOC -OC DOCUMENTS - 1,2"
       },
       {
-        "name": "CORRESPONDENCE DEPT -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDENCE DEPT -1"
       },
       {
-        "name": "CORRESPONDENCE CLIENT -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDENCE CLIENT -1"
       },
       {
-        "name": "CHALLANS & CERTIFICATES - 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CHALLANS & CERTIFICATES - 1"
       },
       {
-        "name": "DRAWINGS",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DRAWINGS"
       },
       {
-        "name": "NW - NG - NA",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "NW - NG - NA"
       },
       {
-        "name": "DEPARTMENT - 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DEPARTMENT - 2"
       }
     ]
   },
@@ -4075,95 +3780,43 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "DOCUMENTS - 1,2,3,4",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DOCUMENTS - 1,2,3,4"
       },
       {
-        "name": "SANCTIONED DRGS - 1,2,3",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SANCTIONED DRGS - 1,2,3"
       },
       {
-        "name": "NOC, OC DOCUMENTS - 1, 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "NOC, OC DOCUMENTS - 1, 2"
       },
       {
-        "name": "CFO NOC - 1,2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CFO NOC - 1,2"
       },
       {
-        "name": "CORRESPONDANCE WITH CLIENT - 1,2,3",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDANCE WITH CLIENT - 1,2,3"
       },
       {
-        "name": "SUB PLOT F - DOCUMENT 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SUB PLOT F - DOCUMENT 1"
       },
       {
-        "name": "SUB PLOT F - DRAWINGS 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SUB PLOT F - DRAWINGS 1"
       },
       {
-        "name": "RATAN SILK MILL -1 - EVEREST MALL OLD DRG.-1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "RATAN SILK MILL -1 - EVEREST MALL OLD DRG.-1"
       },
       {
-        "name": "EVEREST WORLD - MMRDA -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "EVEREST WORLD - MMRDA -1"
       },
       {
-        "name": "EVEREST WORLD - MHADA -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "EVEREST WORLD - MHADA -1"
       },
       {
-        "name": "EVEREST SCHOOL -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "EVEREST SCHOOL -1"
       },
       {
-        "name": "CORRESPONDANCE WITH DEPT - 1,2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDANCE WITH DEPT - 1,2"
       },
       {
-        "name": "EVEREST WORLD - ROAD TDR - 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "EVEREST WORLD - ROAD TDR - 1"
       }
     ]
   },
@@ -4716,46 +4369,22 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "B)  SHAMPRAT MHATRE (KAUSA) R.G. - 53/1,2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "B)  SHAMPRAT MHATRE (KAUSA) R.G. - 53/1,2"
       },
       {
-        "name": "C)   SHAMPRAT MHATRE (KAUSA) T.CAMP - S. No.  51/A, 52/1/A, 53/2/2, 59/1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "C)   SHAMPRAT MHATRE (KAUSA) T.CAMP - S. No.  51/A, 52/1/A, 53/2/2, 59/1"
       },
       {
-        "name": "D)  SHAMPRAT MHATRE (KAUSA) DIS. & MAT. HOME - S. No.  51/2, 52/1/2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D)  SHAMPRAT MHATRE (KAUSA) DIS. & MAT. HOME - S. No.  51/2, 52/1/2"
       },
       {
-        "name": "E)  SHAMPRAT MHATRE (KAUSA) ROAD T.D.R. - S.No. 53/1/1, 53/2/1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "E)  SHAMPRAT MHATRE (KAUSA) ROAD T.D.R. - S.No. 53/1/1, 53/2/1"
       },
       {
-        "name": "F)  SHAMPRAT MHATRE (KAUSA) SECONDARY SCHOOL - S.No. 52/1/1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "F)  SHAMPRAT MHATRE (KAUSA) SECONDARY SCHOOL - S.No. 52/1/1"
       },
       {
-        "name": "G) SHAMPRAT MHATRE (KAUSA) PRIMARY SCHOOL - S.No. 51/3, 52/1/3",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "G) SHAMPRAT MHATRE (KAUSA) PRIMARY SCHOOL - S.No. 51/3, 52/1/3"
       }
     ]
   },
@@ -5263,60 +4892,28 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "OTHER PLOTS DOCUMENTS -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "OTHER PLOTS DOCUMENTS -1"
       },
       {
-        "name": "DRG.- 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DRG.- 1"
       },
       {
-        "name": "EC - ROAD TDR - 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "EC - ROAD TDR - 1"
       },
       {
-        "name": "D3- DOCUMENT - 1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D3- DOCUMENT - 1"
       },
       {
-        "name": "D3- DOCUMENT - SANCTIONED DRG.",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D3- DOCUMENT - SANCTIONED DRG."
       },
       {
-        "name": "D3 - OC- DOCUMENTS -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D3 - OC- DOCUMENTS -1"
       },
       {
-        "name": "D3 - CORRESPONDENCE -1",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D3 - CORRESPONDENCE -1"
       },
       {
-        "name": "D3- DRAWINGS",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "D3- DRAWINGS"
       }
     ]
   },
@@ -5815,11 +5412,7 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "SHUBBECHA CO.OP.HSG.SOC. - 2",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SHUBBECHA CO.OP.HSG.SOC. - 2"
       }
     ]
   },
@@ -6517,17 +6110,11 @@
     "sub_files": [
       {
         "name": "B)  SACHIN JOSHI - MANORAMA NAGAR- S.No. 10 & 11, Manorama Nagar, Thane.",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       },
       {
         "name": "C) SACHIN JOSHI - CHIRAG NAGAR",
-        "current": "CURRENT",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "current": "CURRENT"
       }
     ]
   },
@@ -6540,11 +6127,7 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "A) DRC NO. 221, 184",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "A) DRC NO. 221, 184"
       }
     ]
   },
@@ -6818,25 +6401,13 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "DOCUMENTS",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DOCUMENTS"
       },
       {
-        "name": "CORRESPONDANCE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDANCE"
       },
       {
-        "name": "DRAWINGS",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DRAWINGS"
       }
     ]
   },
@@ -7092,25 +6663,13 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "DOCUMENT",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DOCUMENT"
       },
       {
-        "name": "CORRESPONDANCE",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "CORRESPONDANCE"
       },
       {
-        "name": "DRAWING - C.C. DATED 15/10/2013",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "DRAWING - C.C. DATED 15/10/2013"
       }
     ]
   },
@@ -7672,11 +7231,7 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "SUBODH RUNWAL  (Miscllaneous Projects.)",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "SUBODH RUNWAL  (Miscllaneous Projects.)"
       }
     ]
   },
@@ -8139,18 +7694,10 @@
     "remark": "",
     "sub_files": [
       {
-        "name": "1) PHASE  -  II",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "1) PHASE  -  II"
       },
       {
-        "name": "2) PHASE  - III",
-        "current": "",
-        "record": "",
-        "completed": "",
-        "remark": ""
+        "name": "2) PHASE  - III"
       }
     ]
   },
