@@ -35,8 +35,30 @@ const authenticateToken = (req, res, next) => {
 };
 
 // --- Middleware ---
-// Enable CORS so your React app (on port 3000) can talk to this server (on port 8080)
-app.use(cors());
+// --- Middleware ---
+const allowedOrigins = [
+    'http://localhost:5173', // Your local frontend dev URL (keep for testing)
+    'https://file-search-taupe.vercel.app' // <<< YOUR DEPLOYED VERCEL URL HERE
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, Postman in some cases)
+        if (!origin) return callback(null, true);
+        // Allow if the origin is in our list
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            return callback(null, true);
+        } else {
+            // Disallow if origin is not in the list
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            console.error(`CORS Error: Origin ${origin} not allowed.`); // Log the blocked origin
+            return callback(new Error(msg), false);
+        }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow standard methods
+    credentials: true // If you were using cookies/sessions (not relevant here but good practice)
+}));
+app.use(express.json());
 // Enable parsing of JSON in request bodies (for when you add new files)
 app.use(express.json());
 
