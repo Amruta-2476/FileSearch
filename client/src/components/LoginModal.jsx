@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { X, LogIn } from 'lucide-react';
 
+// Dynamically determine the API base URL
+// Uses the Vite environment variable in production, falls back to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+
 const LoginModal = ({ onClose, onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,13 +18,18 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/login', {
+      const loginUrl = `${API_BASE_URL}/login`;
+      const response = await axios.post(loginUrl, {
         username,
         password,
       });
       onLoginSuccess(response.data.token);
     } catch (err) {
-      setError('Invalid credentials. Please try again.');
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message); 
+      } else {
+        setError('Login failed. Please check credentials or server connection.'); 
+      }
     } finally {
       setIsLoading(false);
     }
