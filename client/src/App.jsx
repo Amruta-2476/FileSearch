@@ -436,6 +436,10 @@ export default function App() {
         </div>
       </main>
 
+      <footer className="app-footer">
+        
+      </footer>
+
       <ToastContainer
         position="bottom-right"
         autoClose={3000}

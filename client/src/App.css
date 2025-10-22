@@ -21,6 +21,7 @@ body, html, #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #FAFCFD;
 }
 
 /* --- Header --- */
@@ -71,8 +72,7 @@ body, html, #root {
   position: relative;
   height: 450px;
   background-image: url('/background.png');
-  background-size: cover;
-  background-position: center;
+  background-size:cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,6 +347,9 @@ body, html, #root {
   margin: 0 auto;
   box-sizing: border-box;
 }
+.app-main.table-section {
+    flex-grow: 1;
+}
 
 /* --- Admin Controls --- */
 .admin-controls {
@@ -445,10 +448,11 @@ body, html, #root {
 }
 .sub-indicator { 
   margin-right: 0.5rem; 
-  color: var(--border-color); 
+  color: #0e8d87; 
+  font-weight: bolder;
 }
 .table-row-sub { 
-  background-color: #fdfdff; 
+  background-color: #f8f8f9; 
 }
 
 .action-btn {
@@ -499,6 +503,25 @@ body, html, #root {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+
+/* --- Footer Styles --- */
+.app-footer {
+  margin-top: auto; /* Push footer to the bottom */
+  width: 100%;
+  height: 200px; 
+  background-image: url('/skyline2.png'); 
+  background-size: contain; 
+  background-position: bottom center; 
+  background-repeat: no-repeat;
+  opacity: 0.6; 
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) { 
+  .app-footer {
+    height: 100px; 
+    margin-bottom: 0.5rem; 
+  }
+}
 
 /* --- Modal Styles --- */
 .modal-overlay {
