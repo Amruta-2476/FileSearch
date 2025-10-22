@@ -35,31 +35,40 @@ const authenticateToken = (req, res, next) => {
 };
 
 // --- Middleware ---
-// --- Middleware ---
 const allowedOrigins = [
-    'http://localhost:5173', // Your local frontend dev URL (keep for testing)
-    'https://file-search-taupe.vercel.app' // <<< YOUR DEPLOYED VERCEL URL HERE
+    'http://localhost:5173', // Your local frontend dev URL
+    'https://file-search-taupe.vercel.app' // Your main production URL
+    // We will check Vercel preview URLs dynamically below
 ];
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, curl, Postman in some cases)
+        // Allow requests with no origin (like mobile apps, curl, Postman)
         if (!origin) return callback(null, true);
-        // Allow if the origin is in our list
+
+        // Allow origins from the explicit list
         if (allowedOrigins.indexOf(origin) !== -1) {
             return callback(null, true);
-        } else {
-            // Disallow if origin is not in the list
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            console.error(`CORS Error: Origin ${origin} not allowed.`); // Log the blocked origin
-            return callback(new Error(msg), false);
         }
+
+        // --- ADD THIS CHECK FOR VERCEL PREVIEWS ---
+        // Allow any subdomain of vercel.app (common pattern for previews)
+        // It looks for URLs ending in '.vercel.app'
+        const vercelPreviewPattern = /^https:\/\/.*\.vercel\.app$/;
+        if (vercelPreviewPattern.test(origin)) {
+             console.log(`CORS Allowing Vercel Preview: ${origin}`);
+             return callback(null, true);
+        }
+        // --- END VERCEL CHECK ---
+
+        // Disallow if origin is not in the list or doesn't match the pattern
+        const msg = `CORS Error: Origin ${origin} not allowed.`;
+        console.error(msg);
+        return callback(new Error(msg), false);
     },
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow standard methods
-    credentials: true // If you were using cookies/sessions (not relevant here but good practice)
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true
 }));
-app.use(express.json());
-// Enable parsing of JSON in request bodies (for when you add new files)
 app.use(express.json());
 
 
