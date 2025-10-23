@@ -53,14 +53,13 @@ body, html, #root {
   background-color: var(--accent-color);
   color: var(--text-dark);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border-radius: 8px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  /* transition: background-color 0.2s; */
 }
 
 .header-btn:hover {
@@ -412,6 +411,7 @@ body, html, #root {
   color: var(--text-light);
   position: sticky; 
   top: 0; 
+  text-align: center;
   z-index: 10;
 }
 
@@ -427,12 +427,15 @@ body, html, #root {
   width: 35%; 
   word-break: break-word; 
 }
-.table-header-status, .table-cell-status { 
-  width: 10%; 
+.data-table .table-header-status,
+.data-table .table-cell-status {  
+  width: 10%;
+  text-align: center;
 }
-.table-header-remark, .table-cell-remark { 
-  width: 15%; 
-  word-break: break-word; 
+.data-table .table-header-remark, .data-table .table-cell-remark {
+    text-align: center;
+    width: 15%; 
+    word-break: break-word; 
 }
 .table-header-actions, .table-cell-actions { 
   width: 10%; 

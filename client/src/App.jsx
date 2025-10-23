@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import axios from 'axios';
-import { Search, Mic, MicOff, Filter, X, FileText, ServerCrash, LogIn, LogOut, Plus, Upload, Download, Edit, Trash2 } from "lucide-react";
+import { Search, Mic, Filter, X, FileText, ServerCrash, CircleUserRound, LogOut, Plus, Upload, Download, Edit, Trash2 } from "lucide-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import LoginModal from './components/LoginModal';
@@ -328,7 +328,7 @@ export default function App() {
             {isAdmin ? (
               <button onClick={handleLogout} className="header-btn"><LogOut size={16} /> Logout</button>
             ) : (
-              <button onClick={() => setShowLoginModal(true)} className="header-btn"><LogIn size={16} /> Admin Login</button>
+              <button onClick={() => setShowLoginModal(true)} className="header-btn"><CircleUserRound size={18} /> Admin Login</button>
             )}
           </div>
         </div>
@@ -346,7 +346,7 @@ export default function App() {
               <Search className="hero-search-icon" size={20} />
               <input type="text" placeholder={isListening ? "Listening..." : "Search by file name, file number, or sub-file..."} value={query} onChange={(e) => setQuery(e.target.value)} className={`hero-search-input ${isListening ? 'listening' : ''}`} />
               <button onClick={toggleVoiceSearch} className={`hero-mic-button ${isListening ? 'listening' : ''}`} title={isListening ? "Stop listening" : "Start voice search"}>
-                {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+                {isListening ? <Mic size={20} /> : <Mic size={20} />}
               </button>
             </div>
             {voiceError && <div className="voice-error-inline">{voiceError}</div>}
